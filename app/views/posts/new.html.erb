@@ -1,0 +1,21 @@
+<h2>hello!</h2>
+
+<%= form_for @post, :url => "/NewPost"  do |f| %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_field :body %>
+  </div>
+
+  <p class="notice"><%= notice %></p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
