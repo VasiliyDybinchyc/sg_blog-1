@@ -16,11 +16,11 @@ class ShowPageTest < ActiveSupport::TestCase
   end
 
   def test_visit_show_page_and_see_corect_post_body
-    assert page.has_text?('AAAA5')
+    assert page.has_text?('AAAA5'*50)
   end
 
   def test_visit_show_page_and_see_corect_post_title
-    assert page.has_text?('a_5')
+    assert page.has_text?('a_5'*3)
   end
 
   def test_button_Edit_Post
@@ -32,7 +32,7 @@ class ShowPageTest < ActiveSupport::TestCase
   end
 
   def create_ten_posts
-    10.times { |n| Post.create(title: "a_#{n}", body: "AAAA#{n}") }
+    10.times { |n| Post.create(title: "a_#{n}"*3, body: "AAAA#{n}"*50) }
   end
 
 end
