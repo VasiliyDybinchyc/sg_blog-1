@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   root "posts#index"
-  get "/post/:id" => "posts#show"
-  get "/NewPost" => "posts#new"
-  post "/NewPost" => "posts#create"
+  resources :posts
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

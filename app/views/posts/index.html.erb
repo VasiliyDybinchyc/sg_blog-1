@@ -2,7 +2,7 @@
 
 <ul>
   <% @posts.each do |post| %>
-    <li class="post-title"><%= link_to post.title, "post/#{post.id}"%> </li>
+    <li class="post-title"><%= link_to post.title, post_path(post.id)%> </li>
   <% end %>
-  <button> <%= link_to "New Post", "/NewPost" %> </button>
+  <button> <%= link_to "New Post", new_post_path %> </button>
 </ul>

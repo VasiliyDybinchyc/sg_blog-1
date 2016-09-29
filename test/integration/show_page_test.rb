@@ -4,7 +4,7 @@ class ShowPageTest < ActiveSupport::TestCase
 
   def setup
     create_ten_posts
-    visit "/post/6"
+    visit "/posts/6"
   end
 
   def test_visit_show_page_and_see_one_post_titles
@@ -28,7 +28,7 @@ class ShowPageTest < ActiveSupport::TestCase
   end
 
   def test_button_Delete_Post
-    assert page.has_button?("Delete Post")
+    assert page.has_button?("Destroy")
   end
 
   def create_ten_posts
