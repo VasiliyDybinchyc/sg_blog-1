@@ -31,6 +31,17 @@ class ShowPageTest < ActiveSupport::TestCase
     assert page.has_button?("Destroy")
   end
 
+  def test_destroy_post
+    click_link "Destroy"
+    visit "/"
+    assert_equal 9, page.all("li.post-title").count
+  end
+
+  def test_go_to_edit
+    click_link "Edit Post"
+    assert page.has_selector?("form")
+  end
+
   def create_ten_posts
     10.times { |n| Post.create(title: "a_#{n}"*3, body: "AAAA#{n}"*50) }
   end
