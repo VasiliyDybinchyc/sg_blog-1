@@ -14,7 +14,4 @@ class RootTest < ActiveSupport::TestCase
     assert_equal 10, page.all("li.post-title").count
   end
 
-  def create_ten_posts
-    10.times { |n| Post.create(title: "a_#{n}"*3, body: "AAAA#{n}"*50) }
-  end
 end

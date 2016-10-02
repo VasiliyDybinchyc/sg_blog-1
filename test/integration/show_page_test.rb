@@ -42,8 +42,4 @@ class ShowPageTest < ActiveSupport::TestCase
     assert page.has_selector?("form")
   end
 
-  def create_ten_posts
-    10.times { |n| Post.create(title: "a_#{n}"*3, body: "AAAA#{n}"*50) }
-  end
-
 end

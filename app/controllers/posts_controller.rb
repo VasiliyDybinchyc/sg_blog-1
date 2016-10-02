@@ -26,6 +26,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update_attributes(post_params)
       redirect_to(@post)
+    else
+      redirect_to edit_post_path, 
+      :notice => "Sorry, your update is not valid. Please, try again."
     end
   end
 
@@ -34,7 +37,8 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post.id)
     else
-      redirect_to new_post_path, :notice => "Sorry, your post is not valid. Please, try again."
+      redirect_to new_post_path,
+      :notice => "Sorry, your post is not valid. Please, try again."
     end
   end
 
