@@ -8,11 +8,11 @@ class ShowPageTest < ActiveSupport::TestCase
   end
 
   def test_visit_show_page_and_see_one_post_titles
-    assert_equal 1, page.all("p.post-title").count
+    assert_equal 1, page.all("div.post-title").count
   end
 
   def test_visit_show_page_and_see_one_post_body
-    assert_equal 1, page.all("p.post-body").count
+    assert_equal 1, page.all("div.post-body").count
   end
 
   def test_visit_show_page_and_see_corect_post_body
@@ -24,11 +24,11 @@ class ShowPageTest < ActiveSupport::TestCase
   end
 
   def test_button_Edit_Post
-    assert page.has_button?("Edit Post")
+    assert page.has_link?("Edit Post")
   end
 
   def test_button_Delete_Post
-    assert page.has_button?("Destroy")
+    assert page.has_link?("Destroy")
   end
 
   def test_destroy_post

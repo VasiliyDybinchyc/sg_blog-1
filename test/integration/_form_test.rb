@@ -8,7 +8,7 @@ class FormTest < ActiveSupport::TestCase
   end
 
   def test_visit_edit_and_new_page_and_see_two_field
-    assert_equal 2, page.all("div.field").count
+    assert_equal 2, page.all("div.form-group").count
   end
 
   def test_visit_edit_and_new_page_and_see_
