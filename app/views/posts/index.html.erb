@@ -1,8 +1,25 @@
-<h2> SG Blog </h2>
+<style>
+   li {
+    list-style-type: none;
+   }
+   ul {
+    margin-left: 0;
+    padding-left: 0;
+   }
+</style>
 
-<ul>
-  <% @posts.each do |post| %>
-    <li class="post-title"><%= link_to post.title, post_path(post.id)%> </li>
-  <% end %>
-  <button> <%= link_to "New Post", new_post_path %> </button>
-</ul>
+<div class ="row">
+    <h2 class="text-center">SG Blog</h2>
+</div>
+
+<div class="col-sm-offset-11">
+  <%= link_to "New Post", new_post_path, class: "btn btn-primary"%>
+</div>
+
+<div class="posts">
+  <ul>
+    <% @posts.each do |post| %>
+      <li class="post-title"><%= link_to post.title, post_path(post.id)%> </li>
+    <% end %>
+  </ul>
+</div>
