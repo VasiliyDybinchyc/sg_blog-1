@@ -10,8 +10,13 @@ class RootTest < ActiveSupport::TestCase
     assert page.has_content?("SG Blog")
   end
 
-  def test_visit_home_page_and_see_ten_post_titles
-    assert_equal 10, page.all("li.post-title").count
+  def test_visit_home_page_and_see_five_post_titles
+    assert_equal 5, page.all(".list-group-item").count
+  end
+
+  def test_link_to_new_post_page
+    click_on "New Post"
+    assert page.has_selector?("form")
   end
 
 end

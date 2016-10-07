@@ -8,11 +8,11 @@ class ShowPageTest < ActiveSupport::TestCase
   end
 
   def test_visit_show_page_and_see_one_post_titles
-    assert_equal 1, page.all("div.post-title").count
+    assert_equal 1, page.all("h2.post-title").count
   end
 
   def test_visit_show_page_and_see_one_post_body
-    assert_equal 1, page.all("div.post-body").count
+    assert_equal 1, page.all("article.post-body").count
   end
 
   def test_visit_show_page_and_see_corect_post_body
@@ -28,13 +28,13 @@ class ShowPageTest < ActiveSupport::TestCase
   end
 
   def test_button_Delete_Post
-    assert page.has_link?("Destroy")
+    assert page.has_link?("Delete post")
   end
 
   def test_destroy_post
-    click_link "Destroy"
-    visit "/"
-    assert_equal 9, page.all("li.post-title").count
+    assert_difference "Post.count", -1 do
+      click_link "Delete post"
+    end
   end
 
   def test_go_to_edit
