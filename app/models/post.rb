@@ -6,4 +6,8 @@ class Post < ActiveRecord::Base
 
   validates :body, length: { minimum: 200 }
 
+  def self.latest_five
+    order(id: :desc).limit(5)
+  end
+
 end

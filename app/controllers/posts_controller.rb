@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.latest_five
   end
 
   def show
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     if @post.update_attributes(post_params)
       redirect_to(@post)
     else
-      redirect_to edit_post_path, 
+      redirect_to edit_post_path,
       :notice => "Sorry, your update is not valid. Please, try again."
     end
   end
