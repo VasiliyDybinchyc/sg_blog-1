@@ -1,16 +1,9 @@
-<div class="post-title">
-  <p>
-    <b>Title:</b>
-    <%= @post.title %>
-  </p>
-</div>
+<h2 class="text-center post-title"><%= @post.title %></h2>
 
-<div class="post-body">
+<article class="col-xs-offset-2 col-xs-8 post-body">
   <p>
-    <b>Body:</b>
     <%= @post.body %>
   </p>
-</div>
-
-<%= link_to "Edit Post", edit_post_path, class: "btn btn-primary" %>
-<%= link_to "Destroy", @post, :method => :delete, class: "btn btn-primary" %>
+  <%= link_to "Edit Post", edit_post_path, class: "btn btn-primary" %>
+  <%= link_to "Delete post", @post, :method => :delete, class: "btn btn-danger" %>
+</article>
