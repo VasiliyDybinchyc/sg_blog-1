@@ -7,8 +7,8 @@ class FormTest < ActiveSupport::TestCase
     visit "/posts/6/edit"
   end
 
-  def test_visit_edit_and_new_page_and_see_two_field
-    assert_equal 2, page.all("div.form-group").count
+  def test_visit_edit_and_new_page_and_see_three_field
+    assert_equal 3, page.all("div.form-group").count
   end
 
   def test_visit_edit_and_new_page_and_see_
