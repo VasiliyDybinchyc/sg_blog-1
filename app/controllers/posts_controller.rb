@@ -24,6 +24,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    @post.image = params[:image]
     if @post.update_attributes(post_params)
       redirect_to(@post)
     else
@@ -44,7 +45,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :image)
     end
 
 end

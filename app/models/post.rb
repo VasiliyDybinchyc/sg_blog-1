@@ -10,4 +10,6 @@ class Post < ActiveRecord::Base
     order(id: :desc).limit(5)
   end
 
+  mount_uploader :image, ImageUploader
+
 end

@@ -1,9 +1,8 @@
 <h2 class="text-center post-title"><%= @post.title %></h2>
 
 <article class="col-xs-offset-2 col-xs-8 post-body">
-  <p>
-    <%= @post.body %>
-  </p>
+  <p> <%= @post.body %> </p>
+  <%= image_tag @post.image.url%>
   <%= link_to "Edit Post", edit_post_path, class: "btn btn-primary" %>
   <%= link_to "Delete post", @post, :method => :delete, class: "btn btn-danger", data: { confirm: "Oh, really?" } %>
 </article>
