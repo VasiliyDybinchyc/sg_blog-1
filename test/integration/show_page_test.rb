@@ -43,14 +43,12 @@ class ShowPageTest < ActiveSupport::TestCase
   end
 
   def test_create_comments
-    fill_in("comment_commenter", :with => "Vasiliy Pupkin")
     fill_in("comment_body", :with => "Hello!")
     click_button "Create Comment"
     assert_equal 1, Comment.all.count
   end
 
   def test_create_comments_and_see_him_in_show_page
-    fill_in("comment_commenter", :with => "Vasiliy Pupkin")
     fill_in("comment_body", :with => "Hello!")
     click_button "Create Comment"
     assert page.has_text?('Hello!')
