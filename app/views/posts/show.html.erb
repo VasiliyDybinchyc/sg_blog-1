@@ -21,6 +21,13 @@
     </div>
   <% end %>
 
+  <div class="alert alert-danger" role="alert">
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+  </div>
+
   <%= link_to "Edit Post", edit_post_path, class: "btn btn-primary" %>
-  <%= link_to "Delete post", @post, :method => :delete, class: "btn btn-danger", data: { confirm: "Oh, really?" } %>
+  <%= link_to "Delete post", @post, :method => :delete, class: "btn btn-danger",
+                                    data: { confirm: "Oh, really?" } %>
 </article>

@@ -5,7 +5,10 @@ class CommentsController < ApplicationController
    if @comment.save
      redirect_to @post
    else
-     flash.now[:danger] = "error"
+     flash[:danger] = "Sorry, your coment is not valid. Please, try again."
+     redirect_to @post
+
+
    end
 end
 
