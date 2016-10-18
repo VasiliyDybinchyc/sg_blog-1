@@ -13,7 +13,7 @@
      <% @comments.each do |comment| %>
       <div class="list-group-item" id=<%= "comment-#{comment.id}" %> >
          <p><%= comment.body %></p>
-         <%= link_to "Edit", edit_post_comment_path(@post, comment)%>
+         <%= link_to "Edit", edit_post_comment_path(@post, comment), remote: true%>
        </div>
      <% end %>
    </div>
