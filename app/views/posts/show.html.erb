@@ -8,25 +8,8 @@
   <%= link_to "Delete post", @post, :method => :delete, class: "btn btn-danger",
                                     data: { confirm: "Oh, really?" } %>
 
-  <h2>Comments</h2>
   <div id="comments">
-     <% @post.comments.each do |comment| %>
-      <div id=<%= "comment-#{comment.id}" %> >
-        <%= comment_body(comment) %>
-      </div>
-     <% end %>
-   </div>
-
-   <% if flash[:notice] %>
-     <div class="notice">
-       <div class="alert alert-danger" role="alert">
-         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-         <span class="sr-only">Error:</span>
-         <%= flash[:notice] %>
-       </div>
-      </div>
-    <% end %>
-
-  <%=render :file => 'comments/_new'%>
+    <%=render :file => 'comments/_comments'%>
+  </div>
 
 </article>

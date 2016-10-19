@@ -14,12 +14,7 @@ class CommentsController < ApplicationController
   def update
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
-    if @comment.update(comment_params)
-      redirect_to @post
-    else
-      flash[:notice] = "Sorry, your coment is not valid. Please, try again."
-      redirect_to(:back)
-    end
+    @comment.update(comment_params)
   end
 
    private
