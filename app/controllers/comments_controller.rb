@@ -1,22 +1,14 @@
 class CommentsController < ApplicationController
 
   def create
-   @post = Post.find(params[:post_id])
-   @comment = @post.comments.create(comment_params)
-   if @comment.save
-     redirect_to @post
-   else
-     flash[:notice] = "Sorry, your coment is not valid. Please, try again."
-     redirect_to @post
-   end
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.create(comment_params)
+    @comment.save
  end
 
    def edit
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
-    respond_to do |format|
-      format.js
-    end
   end
 
   def update

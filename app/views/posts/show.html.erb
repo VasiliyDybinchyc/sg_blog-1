@@ -9,12 +9,11 @@
                                     data: { confirm: "Oh, really?" } %>
 
   <h2>Comments</h2>
-  <div class="comments">
-     <% @comments.each do |comment| %>
-      <div class="list-group-item" id=<%= "comment-#{comment.id}" %> >
-         <p><%= comment.body %></p>
-         <%= link_to "Edit", edit_post_comment_path(@post, comment), remote: true%>
-       </div>
+  <div id="comments">
+     <% @post.comments.each do |comment| %>
+      <div id=<%= "comment-#{comment.id}" %> >
+        <%= comment_body(comment) %>
+      </div>
      <% end %>
    </div>
 
