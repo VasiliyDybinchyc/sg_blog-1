@@ -1,5 +1,5 @@
 <h2>Comments</h2>
-<div id="comments">
+<div id="all-comments">
    <% @post.comments.each do |comment| %>
     <div id=<%= "comment-#{comment.id}" %> >
       <%= comment_body(comment) %>
