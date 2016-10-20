@@ -4,6 +4,6 @@ if (<%= @comment.valid? %>){
 }
 else{
   var t = document.getElementById('comment_body');
-  t.style.backgroundColor='rgba(255,0,0,0.3)';
+  t.style.border='1px double red';
   $("<%= escape_javascript(render(partial: 'comments/error_comments')) %>").appendTo("#comments");
 }
