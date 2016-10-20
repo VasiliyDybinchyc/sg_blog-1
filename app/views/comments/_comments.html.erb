@@ -7,22 +7,13 @@
    <% end %>
  </div>
 
- <% if flash[:notice] %>
-   <div class="notice">
-     <div class="alert alert-danger" role="alert">
-       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-       <span class="sr-only">Error:</span>
-       <%= flash[:notice] %>
-     </div>
-    </div>
-  <% end %>
-
 <h2>Add a comment:</h2>
 <%= form_for([@post, @post.comments.build], remote: true) do |f| %>
   <div class="field">
     <%= f.label :body %><br />
     <%= f.text_area :body, class: "form-control", rows: "4"  %>
   </div>
+
   <div class="actions">
     <%= f.submit class: "btn btn-success" %>
   </div>
