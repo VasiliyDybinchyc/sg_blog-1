@@ -6,9 +6,10 @@ class CreatePostTest < ActiveSupport::TestCase
   end
 
   def test_create_new_post
-    fill_in("post_title", :with => "True title")
-    fill_in("post_body", :with => "TEXT TEXT TEXT"*20)
+    fill_in("post_title", :with => post_content[:title][:valid])
+    fill_in("post_body", :with => post_content[:body][:valid])
     click_button "Create Post"
+    assert page.has_content?(post_content[:title][:valid])
     assert_equal 1, Post.all.count
   end
 
@@ -26,4 +27,11 @@ class CreatePostTest < ActiveSupport::TestCase
     assert page.has_content?("Sorry, your post is not valid. Please, try again.")
   end
 
+  private
+  def post_content
+    {:title => {:valid => "True title",
+                :invalid => "error"},
+     :body => {:valid => "TEXT TEXT TEXT"*20,
+               :invalid => "error"}}
+  end
 end

@@ -33,31 +33,13 @@ class ShowPageTest < ActiveSupport::TestCase
 
   def test_destroy_post
     assert_difference "Post.count", -1 do
-      click_link "Delete post"
+      page.accept_confirm { click_link "Delete post" }
     end
   end
 
   def test_go_to_edit
     click_link "Edit Post"
     assert page.has_selector?("form")
-  end
-
-  def test_create_comments
-    fill_in("comment_body", :with => "Hello!")
-    click_button "Create Comment"
-    assert_equal 1, Comment.all.count
-  end
-
-  def test_false_create_comments
-    fill_in("comment_body", :with => "FFF")
-    click_button "Create Comment"
-    assert_equal 0, Comment.all.count
-  end
-
-  def test_create_comments_and_see_him_in_show_page
-    fill_in("comment_body", :with => "Hello!")
-    click_button "Create Comment"
-    assert page.has_text?('Hello!')
   end
 
 end
