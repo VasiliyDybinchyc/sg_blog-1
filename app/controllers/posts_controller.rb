@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
 
+  before_action :find_post, only: [:show, :edit, :destroy, :update]
+
   def index
     @posts = Post.latest_five
   end
 
   def show
-    @post = Post.find(params[:id])
     @comments = @post.comments
   end
 
@@ -14,17 +15,14 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to "/"
   end
 
   def update
-    @post = Post.find(params[:id])
     @post.image = params[:image]
     if @post.update_attributes(post_params)
       redirect_to(@post)
@@ -45,8 +43,13 @@ class PostsController < ApplicationController
   end
 
   private
-    def post_params
-      params.require(:post).permit(:title, :body, :image)
-    end
+
+  def find_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :body, :image)
+  end
 
 end

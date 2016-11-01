@@ -1,3 +1,10 @@
-$('#comments').html("")
-$("<%= escape_javascript(render(partial: 'comments/comments', :locals => {:post => @post, :comments => @comments })) %>")
-.appendTo("#comments");
+$('#comment_body').val('');
+if (<%= @comment.valid? %>){
+  $('#comment-<%= @comment.id %>').html("<div id=<%= 'comment-'+@comment.id.to_s %> > <%= comment_body(@comment) %> </div>")
+}
+else{
+  var comment_body = document.getElementById('comment_body');
+  comment_body.style.border='1px double red';
+  $("<%= escape_javascript(render(partial: 'comments/error_comments')) %>")
+  .appendTo(".comment-edit-forms");
+}

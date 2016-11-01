@@ -1,9 +1,9 @@
 $('#comment_body').val('');
 if (<%= @comment.valid? %>){
-  $("#all-comments").append("<%= comment_body(@comment) %>");
+  $("#all-comments").append("<div id=<%= 'comment-'+@comment.id.to_s %> > <%= comment_body(@comment) %> </div>");
 }
 else{
-  var t = document.getElementById('comment_body');
-  t.style.border='1px double red';
+  var comment_body = document.getElementById('comment_body');
+  comment_body.style.border='1px double red';
   $("<%= escape_javascript(render(partial: 'comments/error_comments')) %>").appendTo("#comments");
 }

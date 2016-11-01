@@ -1,3 +1,2 @@
-$('#comment-<%= @comment.id %>').html("")
 $('#comment-<%= @comment.id %>')
 .append("<%= j render(partial: 'comments/edit', :locals => {:post => @post, :comment => @comment }) %>")

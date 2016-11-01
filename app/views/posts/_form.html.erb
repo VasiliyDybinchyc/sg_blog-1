@@ -24,7 +24,9 @@
     </div>
 
     <div class="actions">
-      <%= post.submit class: "btn btn-success" %>
+      <%= button_tag(type: 'submit', class: "btn btn-success") do %>
+        <%= current_page?(new_post_path) ? "Make'em read!" : "Now its OK" %>
+      <% end %>
     </div>
 
   <% end %>
