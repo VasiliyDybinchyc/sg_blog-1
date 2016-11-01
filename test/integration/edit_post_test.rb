@@ -8,27 +8,36 @@ class EditPostTest < ActiveSupport::TestCase
   end
 
   def test_good_edit_post_title_and_see_upgrade
-    fill_in("post_title", :with => "True title1")
+    fill_in("post_title", :with => post_content[:title][:valid])
     click_button "Now its OK"
-    assert page.has_content?("True title1")
+    assert page.has_content?(post_content[:title][:valid])
   end
 
   def test_good_edit_post_body_and_see_upgrade
-    fill_in("post_body", :with => "TEXT1 TEXT1 TEXT1"*20)
+    fill_in("post_body", :with => post_content[:body][:valid])
     click_button "Now its OK"
-    assert page.has_content?("TEXT1 TEXT1 TEXT1"*20)
+    assert page.has_content?(post_content[:body][:valid])
   end
 
   def test_bad_edit_post_title_and_see_error
-    fill_in("post_title", :with => "F")
+    fill_in("post_title", :with => post_content[:title][:invalid])
     click_button "Now its OK"
     assert page.has_content?("Sorry, your update is not valid. Please, try again.")
   end
 
   def test_bad_edit_post_body_and_see_error
-    fill_in("post_body", :with => "F")
+    fill_in("post_body", :with => post_content[:body][:invalid])
     click_button "Now its OK"
     assert page.has_content?("Sorry, your update is not valid. Please, try again.")
+  end
+
+  private
+
+  def post_content
+    {:title => {:valid => "True title",
+                :invalid => "F"},
+     :body => {:valid => "TEXT TEXT TEXT"*20,
+               :invalid => "F"}}
   end
 
 end
