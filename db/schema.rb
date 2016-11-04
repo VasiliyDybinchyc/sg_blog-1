@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016074231) do
+ActiveRecord::Schema.define(version: 20161104190236) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -22,10 +22,48 @@ ActiveRecord::Schema.define(version: 20161016074231) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
 
+  create_table "companies", force: :cascade do |t|
+    t.string  "name"
+    t.decimal "lat"
+    t.decimal "lng"
+    t.integer "user_id"
+  end
+
+  add_index "companies", ["user_id"], name: "index_companies_on_user_id"
+
+  create_table "geolocation", force: :cascade do |t|
+    t.string  "address"
+    t.decimal "lat"
+    t.decimal "lng"
+    t.integer "user_id"
+  end
+
+  add_index "geolocation", ["user_id"], name: "index_geolocation_on_user_id"
+
+  create_table "geolocations", force: :cascade do |t|
+    t.string  "address"
+    t.decimal "lat"
+    t.decimal "lng"
+    t.integer "user_id"
+  end
+
+  add_index "geolocations", ["user_id"], name: "index_geolocations_on_user_id"
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "body"
     t.string "image"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "remember_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end

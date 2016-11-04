@@ -9,6 +9,7 @@ class ActiveSupport::TestCase
   include Rails.application.routes.url_helpers
   DatabaseCleaner.strategy = :truncation
   self.use_transactional_fixtures = false
+  fixtures :all
 
   setup do
     DatabaseCleaner.start
