@@ -1,0 +1,18 @@
+<h1>Create geolocation</h1>
+
+<%= form_for([@user, @geolocation]) do |f| %>
+  <%= f.label :name, 'Point to your home'  %>
+  <%=f.text_field :address %>
+  <%= f.hidden_field :lat, id: 'map_lat' %>
+  <%= f.hidden_field :lng, id: 'map_lng' %>
+  <%= f.submit 'CREATE' %>
+  <div style='width: 800px;'>
+    <div id="map" style='width: 800px; height: 400px;'></div>
+  </div>
+<% end %>
+
+<script>
+  $(document).ready(function(){
+      gmap_form(null);    // form map for new view (print nothing with possibility of put marker)
+    });
+</script>

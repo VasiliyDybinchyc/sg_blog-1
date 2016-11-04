@@ -22,24 +22,6 @@ ActiveRecord::Schema.define(version: 20161104190236) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
 
-  create_table "companies", force: :cascade do |t|
-    t.string  "name"
-    t.decimal "lat"
-    t.decimal "lng"
-    t.integer "user_id"
-  end
-
-  add_index "companies", ["user_id"], name: "index_companies_on_user_id"
-
-  create_table "geolocation", force: :cascade do |t|
-    t.string  "address"
-    t.decimal "lat"
-    t.decimal "lng"
-    t.integer "user_id"
-  end
-
-  add_index "geolocation", ["user_id"], name: "index_geolocation_on_user_id"
-
   create_table "geolocations", force: :cascade do |t|
     t.string  "address"
     t.decimal "lat"
