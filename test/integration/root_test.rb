@@ -14,9 +14,4 @@ class RootTest < ActiveSupport::TestCase
     assert_equal 5, page.all(".list-group-item").count
   end
 
-  def test_link_to_new_post_page
-    click_on "New Post"
-    assert page.has_selector?("form")
-  end
-
 end
