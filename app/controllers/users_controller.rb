@@ -17,7 +17,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @geolocation = @user.geolocation.map { |l| [["id", l.id], ["name", l.address], ["lat", l.lat], ["lng", l.lng]] }
+    @geolocation = @user.geolocation.map { |l| [["id", l.id], ["name", l.address],
+                                                ["lat", l.lat], ["lng", l.lng]] }
     @hash = Hash[*@geolocation.flatten]
   end
 

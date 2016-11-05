@@ -1,53 +1,31 @@
-function gmap_show(company) {
-  if ((company.lat == null) || (company.lng == null) ) {    // validation check if coordinates are there
-    return 0;
-  }
+function gmap_show(geolocation) {
+  var myLatLng = {lat: Number(geolocation.lat), lng: Number(geolocation.lng)};
 
-  handler = Gmaps.build('Google');    // map init
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers([    // put marker method
-      {
-        "lat": company.lat,    // coordinates from parameter company
-        "lng": company.lng,
-        "picture": {    // setup marker icon
-          "url": 'http://www.planet-action.org/img/2009/interieur/icons/orange-dot.png',
-          "width":  32,
-          "height": 32
-        },
-        "infowindow": "<b>" + company.name + "</b> " + company.address + ", " + company.postal_code + " " + company.city
-      }
-    ]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    handler.getMap().setZoom(12);    // set the default zoom of the map
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    icon: "http://maps.google.com/mapfiles/ms/icons/orange-dot.png"
   });
 }
 
-function gmap_form(company) {
-  handler = Gmaps.build('Google');    // map init
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    if (company && company.lat && company.lng) {    // statement check - new or edit view
-      markers = handler.addMarkers([    // print existent marker
-        {
-          "lat": company.lat,
-          "lng": company.lng,
-          "picture": {
-            "url": 'http://www.planet-action.org/img/2009/interieur/icons/orange-dot.png',
-            "width":  32,
-            "height": 32
-          },
-          "infowindow": "<b>" + company.name + "</b> " + company.address + ", " + company.postal_code + " " + company.city
-        }
-      ]);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      handler.getMap().setZoom(12);
-    }
-    else {    // show the empty map
-      handler.fitMapToBounds();
-      handler.map.centerOn([52.10, 19.30]);
-      handler.getMap().setZoom(6);
-    }
+function gmap_form(geolocation) {
+  var myLatlng = new google.maps.LatLng(Number(geolocation.lat), Number(geolocation.lng));
+
+  var mapOptions = {
+    zoom: 12,
+    center: myLatlng
+  }
+  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      icon: "http://maps.google.com/mapfiles/ms/icons/orange-dot.png"
   });
 
   var markerOnMap;
@@ -59,14 +37,17 @@ function gmap_form(company) {
     else {
       markerOnMap = new google.maps.Marker({
         position: location,
-        map: handler.getMap()
+        map: map
       });
     }
   }
 
-  google.maps.event.addListener(handler.getMap(), 'click', function(event) {    // event for click-put marker on map and pass coordinates to hidden fields in form
+  google.maps.event.addListener(map, 'click', function(event) {    // event for click-put marker on map and pass coordinates to hidden fields in form
     placeMarker(event.latLng);
     document.getElementById("map_lat").value = event.latLng.lat();
     document.getElementById("map_lng").value = event.latLng.lng();
   });
+
+// To add the marker to the map, call setMap();
+marker.setMap(map);
 }

@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  resources :users do
+    resources :geolocations
+  end
+
   resources :posts do
     resources :comments
   end

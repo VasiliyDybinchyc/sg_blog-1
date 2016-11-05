@@ -1,2 +1,10 @@
-<h1>Companies#edit</h1>
-<p>Find me in app/views/companies/edit.html.erb</p>
+<h1>Edit geolocation</h1>
+
+<%= render "form" %>
+
+<script>
+  $(document).ready(function(){
+    var geolocation = <%= raw @hash.to_json %>
+      gmap_form(geolocation);    // form map for new view (print nothing with possibility of put marker)
+    });
+</script>

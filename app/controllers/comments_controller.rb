@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.create(comment_params)
     @comment.save
- end
+  end
 
-   def edit
+  def edit
     @comment = @post.comments.find(params[:id])
   end
 
