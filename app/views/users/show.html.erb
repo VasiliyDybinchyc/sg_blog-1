@@ -1,5 +1,7 @@
-<%= @user.name %>, <%= @user.email %>
+<h2><%= @user.name %>, <%= @user.email %></h2>
 
-<%= link_to @hash.empty? ? "My location" : "My new location", new_map_or_edit, class: "btn btn-primary" %>
+<%= link_to @hash.empty? ? "My location" : "Change my location", new_map_or_edit, class: "btn btn-primary" %>
 
-<%= render :file => 'geolocations/_show' if !@hash.empty? %>
+<div id="location-info">
+  <%= render :file => 'geolocations/_show' if !@hash.empty? %>
+</div>
