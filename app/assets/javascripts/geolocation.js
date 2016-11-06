@@ -14,11 +14,19 @@ function gmap_show(geolocation) {
 }
 
 function gmap_form(geolocation) {
-  var myLatlng = new google.maps.LatLng(Number(geolocation.lat), Number(geolocation.lng));
 
-  var mapOptions = {
-    zoom: 12,
-    center: myLatlng
+  if (geolocation != null){
+    var myLatlng = new google.maps.LatLng(Number(geolocation.lat), Number(geolocation.lng));
+    var mapOptions = {
+      zoom: 12,
+      center: myLatlng
+    }
+  }
+  else {
+    var mapOptions = {
+      zoom: 2,
+      center: {lat: 0, lng: 0}
+    }
   }
   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 

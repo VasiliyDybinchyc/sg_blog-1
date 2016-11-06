@@ -1,9 +1,9 @@
 <%= form_for([@user, @geolocation]) do |f| %>
-  <%= f.label :name, 'Point to your home'  %>
-  <%=f.text_field :address %>
   <%= f.hidden_field :lat, id: 'map_lat' %>
   <%= f.hidden_field :lng, id: 'map_lng' %>
-  <%= f.submit %>
+  <%= button_tag(type: 'submit', class: "btn btn-success") do %>
+    <%= current_page?(new_user_geolocation_path) ? "This my home" : "Change home" %>
+  <% end %>
   <div style='width: 800px;'>
     <div id="map" style='width: 800px; height: 400px;'></div>
   </div>

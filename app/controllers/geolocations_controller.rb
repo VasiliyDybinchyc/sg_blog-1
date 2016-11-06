@@ -13,11 +13,16 @@ class GeolocationsController < ApplicationController
   end
 
   def edit
-    @geolocation = @user.geolocation.find(params[:id])
+    if current_user?(@user)
+      @geolocation = @user.geolocation.find(params[:id])
 
-    @geolocationMap = @user.geolocation.map { |l| [["id", l.id], ["name", l.address],
-                                          ["lat", l.lat], ["lng", l.lng]] }
-    @hash = Hash[*@geolocationMap.flatten]
+      @geolocationMap = @user.geolocation.map { |l| [["id", l.id], ["name", l.address],
+                                            ["lat", l.lat], ["lng", l.lng]] }
+      @hash = Hash[*@geolocationMap.flatten]
+    else
+      flash[:danger] = "You can't change location anotner user"
+      redirect_to @user
+    end
   end
 
   def update
