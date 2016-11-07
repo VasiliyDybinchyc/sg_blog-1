@@ -2,6 +2,7 @@ require "test_helper"
 
 class CreatePostTest < ActiveSupport::TestCase
   def setup
+    signup
     visit "/posts/new"
   end
 
