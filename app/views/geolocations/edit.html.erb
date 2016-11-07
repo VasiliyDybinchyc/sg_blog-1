@@ -1,14 +1,10 @@
-<script src="//maps.google.com/maps/api/js?key=AIzaSyDCrUkskIwGa34xUScCGebVWsosWHGOWhk"></script>
-<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-<script src="//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js"></script>
-
 <h3>Edit geolocation</h3>
 
 <%= render "form" %>
 
 <script>
   $(document).ready(function(){
-    var geolocation = <%= raw @hash.to_json %>
+    var geolocation = <%= raw @geolocation.to_json %>
       gmap_form(geolocation);    // form map for new view (print nothing with possibility of put marker)
     });
 </script>

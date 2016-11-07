@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 6 }
 
-  has_many :geolocation, dependent: :destroy
+  has_one :geolocation, dependent: :destroy
 
   class << self
 

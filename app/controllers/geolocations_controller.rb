@@ -7,18 +7,14 @@ class GeolocationsController < ApplicationController
   end
 
   def create
-    @geolocation = @user.geolocation.create(geolocation_params)
-    @geolocation.save
+    @geolocation = Geolocation.create(geolocation_params)
+    @user.geolocation = @geolocation
     redirect_to @user
   end
 
   def edit
     if current_user?(@user)
-      @geolocation = @user.geolocation.find(params[:id])
-
-      @geolocationMap = @user.geolocation.map { |l| [["id", l.id], ["name", l.address],
-                                            ["lat", l.lat], ["lng", l.lng]] }
-      @hash = Hash[*@geolocationMap.flatten]
+      @geolocation = @user.geolocation
     else
       flash[:danger] = "You can't change location anotner user"
       redirect_to @user
@@ -26,7 +22,7 @@ class GeolocationsController < ApplicationController
   end
 
   def update
-    @geolocation = @user.geolocation.find(params[:id])
+    @geolocation = @user.geolocation
     @geolocation.update(geolocation_params)
     redirect_to @user
   end
@@ -38,6 +34,6 @@ class GeolocationsController < ApplicationController
   end
 
   def geolocation_params
-    params.require(:geolocation).permit(:name, :lat, :lng)
+    params.require(:geolocation).permit(:lat, :lng)
   end
 end

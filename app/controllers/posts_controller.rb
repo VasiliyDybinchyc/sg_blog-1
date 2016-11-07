@@ -11,7 +11,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if logged_in?
+      @post = Post.new
+    else
+      flash[:danger] = "Please sign up or log in"
+      redirect_to root_path
+    end
   end
 
   def edit
