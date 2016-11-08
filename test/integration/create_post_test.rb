@@ -2,7 +2,8 @@ require "test_helper"
 
 class CreatePostTest < ActiveSupport::TestCase
   def setup
-    signup
+    @user = users(:vasiliy)
+    login(@user)
     visit "/posts/new"
   end
 

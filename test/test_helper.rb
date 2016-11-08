@@ -35,11 +35,9 @@ def create_ten_posts
   10.times { |n| Post.create(title: "a_#{n}"*3, body: "AAAA#{n}"*50) }
 end
 
-def signup
- visit "/signup"
- fill_in "user_name",                       with: "true name"
- fill_in "user_email",                      with: "valid@email.com"
- fill_in "user_password",                   with: "passwod"
- fill_in "user_password_confirmation",      with: "passwod"
- click_button "Create my account"
+def login(user)
+  visit login_path
+  fill_in("session_email", :with => user.email)
+  fill_in("session_password", :with => "password")
+  click_button "Log in"
 end

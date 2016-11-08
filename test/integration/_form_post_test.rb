@@ -3,6 +3,8 @@ require "test_helper"
 class FormTest < ActiveSupport::TestCase
 
   def setup
+    @user = users(:vasiliy)
+    login(@user)
     create_ten_posts
     visit "/posts/6/edit"
   end

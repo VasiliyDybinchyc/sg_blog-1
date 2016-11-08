@@ -1,8 +1,10 @@
 require "test_helper"
 
-class ShowPageTest < ActiveSupport::TestCase
+class ShowPagePostTest < ActiveSupport::TestCase
 
   def setup
+    @user = users(:vasiliy)
+    login(@user)
     create_ten_posts
     visit "/posts/6"
   end
@@ -45,6 +47,8 @@ end
 
 class CommentTest < IntegrationWebkitTest
   def setup
+    @user = users(:vasiliy)
+    login(@user)
     Post.create(title: "aaaa1", body: "A"*200)
   end
 
